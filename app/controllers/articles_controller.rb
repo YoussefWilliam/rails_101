@@ -10,8 +10,17 @@ class ArticlesController < ApplicationController
         # One way of creating a record "prefered one"
         # Article.create(article_params)
         @article = Article.new(article_params)
-        @article.save
-        redirect_to article_show(@article)
+        if @article.save
+            flash[:notice] = "Article is successfully created"
+            redirect_to article_path(@article)
+        else
+            render 'new'
+        end
+    end
+
+    def show
+        article_id = params[:id]
+        @article = Article.find(article_id)
     end
 
     private
