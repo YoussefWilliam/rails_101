@@ -1,0 +1,23 @@
+<h1> Welcome to your articles </h1>
+
+<h3> Number of articles so far: <%=@articles.count %></h3>
+
+<table>
+    <tr>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Author </th>
+
+    </tr>
+    <% @articles.each do |article| %>
+        <tr>
+            <td> <%= article.title %> </td>
+            <td> <%= article.description %> </td>
+            <td> <%= article.author %> </td>
+            <td> <%= link_to "Edit article", edit_article_path(article.id) %> </td>
+            <td> <%= link_to "Show article", article_path(article) %> </td>
+        </tr>
+    <% end %>
+</table>
+
+<%= link_to "Create article", new_article_path %>
